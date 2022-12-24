@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="algo.css" type="text/css" />
+    <title>Algorithmes et fonctions JavaScript</title>
+</head>
+<body>
+    <div id="main">
+        <h1>Fonctions utiles</h1>
+        <div id="menu">
+            <div class="submenu">
+                <ul>
+                    <li><a href="#A" target="_self">A. Convertir Celsius en Fahrenheit</a></li>
+                    <li><a href="#B" target="_self">B. Renverser une phrase </a></li>
+                    <li><a href="#C" target="_self">C. Trouver la factorielle d'un nombre </a></li>
+                    
+                </ul>
+                <ul>
+                    <li><a href="#D" target="_self">D. Trouver le mot le plus long dans une phrase </a></li>
+                    <li><a href="#E" target="_self">E. Trouver les chiffres les plus grands de chaque Array</a></li>
+                    <li><a href="#F" target="_self">F. Vérifier si un mot ou phrase finit par une suite de caractères</a></li>
+                    
+                </ul>
+            </div>
+            <div class="submenu">
+                <ul>
+                    <li><a href="#G" target="_self">G. Répéter une phrase un certain nombre de fois</a></li>
+                    <li><a href="#H" target="_self">H. Tronquer une phrase</a></li>
+                    <li><a href="#I" target="_self">I. Trouver le premier élément d'un tableau avec une condition</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#J" target="_self">J. Vérifier qu'une valeur soit booléenne</a></li>
+                    <li><a href="#K" target="_self">K. Convertir un nombre en chiffres romains</a></li>
+                    <li><a href="#L" target="_self">L. (Dé)coder un texte avec le Rot13</a></li>
+                </ul>
+            </div>
+            <div class="submenu">
+                <ul>
+                    <li><a href="#M" target="_self">M. Mettre en majuscule chaque première lettre d'une phrase</a></li>
+                    <li><a href="#N" target="_self">N. Insérer un tableau dans un tableau à un index donné</a></li>
+                    <li><a href="#O" target="_self">O. Retirer toutes les valeurs "falsy" d'un tableau</a></li>
+                    
+                </ul>
+                <ul>
+                    <li><a href="#P" target="_self">P. Trouver l'index d'un nombre dans un tableau croissant</a></li>
+                    <li><a href="#Q" target="_self">Q. Vérifier si une chaîne de caractère contient certaines lettres</a></li>
+                    <li><a href="#R" target="_self">R. Diviser les éléments d'un tableau en tableaux de taille "n"</a></li>
+                </ul>
+            </div>
+            <div class="submenu">
+                <ul>
+                    <li><a href="#S" target="_self">S. Calculer la somme de tous les nombres entre deux(inclus)</a></li>
+                    <li><a href="#T" target="_self">T. Trouver les éléments présents dans un seul tableau</a></li>
+                </ul>
+            </div>
+        </div>
+                        <!-- -----------------------A----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="A">Convertir Celsius en Fahrenheit (A)</h2>
+            <p class="in">Entrée : Température en Celsius <strong>(Number)</strong></p>
+            <p class="out">Sortie : Température en Fahrenheit <strong>(Number)</strong></p>
+            <pre>
+<span>// La fonction <strong>convertCtoF</strong> prend un seul argument (celsius)</span>
+function <strong>convertCtoF</strong>(celsius) {
+    <span>// on déclare la variable qui aura la valeur finale en Fahrenheit</span>
+    let fahrenheit;
+    <span>// on lui assigne la valeur de l'argument multiplié par le taux de conversion</span>
+    fahrenheit = (celsius * 9/5) + 32;
+    <span>// on renvoie la valeur de la variable fahrenheit</span>
+    return fahrenheit;
+}
+
+<span>// Appel de la fonction avec pour argument "30"</span>
+convertCtoF(30);
+    </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px; color:antiquewhite">Valeur d'entrée (° celsius)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerA">
+                <button id="submitA">Test</button><br />
+            <span id= "outputA" class="output"></span>
+            <script>
+                const boutonA = document.getElementById("submitA");
+                function convertCtoF(celsius) {
+                    // on déclare la variable qui aura la valeur finale en Fahrenheit
+                    let fahrenheit;
+                    // on lui assigne la valeur de l'argument multiplié par le taux de conversion
+                    fahrenheit = (celsius * 9/5) + 32;
+                    // on renvoie la variable fahrenheit
+                    const resultNum = new Intl.NumberFormat('fr-FR').format(fahrenheit);
+                    return resultNum;
+                }
+        
+                boutonA.addEventListener('click', function() {
+                    const inputA = document.querySelector("#envoyerA").value;
+                    const outputA = document.getElementById("outputA");
+                    let resultatA = convertCtoF(inputA);
+                    document.querySelector("#envoyerA").value ="";
+                    document.querySelector("#envoyerA").focus();
+                    outputA.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : ${inputA}° Celsius</span> <br /> Résultat  : ${resultatA}° Fahrenheit`;
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <p>
+                </p>
+                
+            </aside>
+        </article>
+        <!-- -----------------------B----------------------------- -->
+        <article class="function">
+            <section>
+                <h2 id="B">Renverser une phrase (B)</h2>
+                <p class="in">Entrée : Chaîne de caractère <strong>(String)</strong></p>
+                <p class="out">Sortie : Chaîne de caractère en sens inverse <strong>(String)</strong></p>
+                <pre>
+<span>// La fonction reverseString() prend un seul argument (str)</span>
+function reverseString(str) {
+    <span>// On déclare une variable string vide</span>
+    let reversedStr ="";
+    <span>
+    /* On boucle sur l'argument str, et on commence au dernier caractère (str.length - 1) pour revenir progressivement jusqu'au premier caractère. A chaque boucle on insère avec += str[i] le caractère dans la variable reversedStr, qui se construit progressivement par la fin */
+    </span> 
+    for(let i= str.length - 1; i >= 0; i--) {
+        reversedStr += str[i];
+    }
+    <span>// on renvoie la valeur de reversedStr</span>
+    return reversedStr;
+    }
+<span>// Appel de la fonction reverseString()</span>
+reverseString("hello");
+                </pre>
+                <br />
+                    <label for="envoyer"><span style="font-size: 100%; margin-left: 50px; color:antiquewhite">Valeur d'entrée (String)</span> : </label>
+                    <input type="text" name="envoyer" id="envoyerB">
+                    <button id="submitB">Test</button><br />
+                <span id= "outputB" class="output"></span>
+                <script>
+                    const boutonB = document.getElementById("submitB");
+                        // La fonction reverseString() prend un seul argument (str)
+                    function reverseString(str) {
+                        // On déclare une variable string vide
+                        let reversedStr ="";
+                        // On boucle sur l'argument str, et on commence au dernier caractère (str.length - 1) pour<br />
+                        // revenir progressivement jusqu'au premier caractère. A chaque boucle on insère avec += str[i] le caractère dans <br/>
+                        // la variable reversedStr, qui se construit progressivement par la fin
+                        for(let i= str.length - 1; i >= 0; i--) {
+                            reversedStr += str[i];
+                        }
+                        // on renvoie la valeur de reversedStr
+                        return reversedStr;
+                        }
+
+            
+                    boutonB.addEventListener('click', function() {
+                        const inputB = document.querySelector("#envoyerB").value;
+                        const outputB = document.getElementById("outputB");
+                        let resultatB = reverseString(inputB);
+                        document.querySelector("#envoyerB").value ="";
+                        document.querySelector("#envoyerB").focus();
+                        outputB.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : "${inputB}"</span> <br /> Résultat  : "${resultatB}"`;
+                    
+                        
+                    });
+                </script>
+            </section>
+            <aside><h3>Notes</h3></aside>
+        </article>
+        <!-- -----------------------C----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="C">Trouver la factorielle d'un nombre (C)</h2>
+            <p class="in">Entrée : Nombre supérieur ou égal à 0 <strong>(Number)</strong></p>
+            <p class="out">Sortie : Factoriel de ce nombre (Si nombre = n alors factoriel de n! = 1 x...x n) <strong>(Number)</strong></p>
+            <pre>
+<span>// Plusieurs façons de procéder : </span>
+<span>// Par une boucle classique</span>
+function factorialize(num) {
+    <span>//0! = 1 donc on initialise une variable product à 1</span>
+    let product = 1;
+    <span>// On boucle en incrémentant à partir de 2 jusqu'au nombre passé en argument</span>
+    <span>// A chaque itération de la boucle product est multiplié par i (donc 2, puis 3,</span>
+    <span>// etc... jusqu'à "num")</span>
+    for (let i = 2; i <= num; i++) {
+      product *= i;
+    }
+    <span>// On renvoie la valeur de product</span>
+    return product;
+  }
+  <span>// On appelle la fonction avec l'argument 5</span>
+  factorialize(5);
+
+  <span>// Par une fonction récursive : </span>
+  function factorialize(num) {
+   <span> //On commence par une condition : si num est égal à 0 alors 0! = 1</span>
+    if (num === 0) {
+      return 1;
+    }
+    <span>// Dans tous les autres cas, on fait appel à la récursivité : on renvoie le résultat de l'argument multiplié</span>
+    <span>// par un appel à cette même fonction mais avec un argument - 1, qui elle-même fera appel à cette fonction</span>
+    <span>// avec un argument - 1, jusqu'à ce que num = 1 et donc num - 1 = 0</span>
+    return num * factorialize(num - 1);
+  }
+  <span>// On appelle la fonction avec l'argument 5</span>
+  factorialize(5);
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (Number)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerC">
+                <button id="submitC">Test</button><br />
+            <span id= "outputC" class="output"></span>
+            <script>
+                const boutonC = document.getElementById("submitC");
+                    // La fonction factorialize prend un seul argument (num)
+                    function factorialize(num) {
+                        //0! = 1 donc on initialise une variable product à 1
+                        let product = 1;
+                        // On boucle en incrémentant à partir de 2 jusqu'au nombre passé en argument<br />
+                        // A chaque itération de la boucle product est multiplié par i (donc 2, puis 3, etc... jusqu'à "num")
+                        for (let i = 2; i <= num; i++) {
+                        product *= i;
+                        }
+                        const resultNum = new Intl.NumberFormat('fr-FR').format(product);
+                      // On renvoie la valeur de product
+                        return resultNum;
+                    }
+                boutonC.addEventListener('click', function() {
+                    const inputC = document.querySelector("#envoyerC").value;
+                    const outputC = document.getElementById("outputC");
+                    let resultatC;
+                    if(!isNaN(inputC)) {
+                        resultatC = factorialize(inputC);
+                    }else if(inputC === 'un nombre') {
+                        resultatC = "Ben oui ça par contre oui d'accord là je veux bien c'est un nombre"
+                    }else {
+                        resultatC = 'Ce n\'est pas un nombre !'
+                    }
+                    document.querySelector("#envoyerC").value ="";
+                    document.querySelector("#envoyerC").focus();
+                    outputC.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : ${inputC}</span> <br /> Résultat  : ${inputC}! = ${resultatC}`;
+                
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+            </aside>
+        </article>
+        <!-- -----------------------D----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="D">Trouver le mot le plus long dans une phrase (D)</h2>
+            <p class="in">Entrée : Suite de mots <strong>(String)</strong></p>
+            <p class="out">Sortie : Mot le plus long et son nombre de caracteres<strong>(string et number)</strong></p>
+            <!-- DEBUT DE L'AFFICHAGE DU CODE-->
+            <pre>
+function findLongestWord(str) {
+    <span>// On déclare une variable pour la taille du mot le plus long</span>
+    let maxLength = 0;
+    <span>//On déclare une variable pour le mot le plus long</span>
+    let biggestWord = '';
+    <span>//On déclare un tableau dans lequel mettre les deux variables précédentes</span>
+    const resultArray = [];
+    <span>// On coupe la phrase à partir des espaces et on met chaque mot dans le tableau "words"</span>
+    const words = str.split(' ');
+    <span>// On boucle sur chaque mot du tableau words</span>
+    for(let i = 0; i < words.length; i++) {
+        <span>// Quand un mot est plus long que maxLength(soit 0 au départ)</span>
+        if(words[i].length > maxLength) {
+        <span>// On change la valeur de maxLength pour celle du nouveau mot trouvé</span>
+        maxLength = words[i].length;
+        <span>// Le mot plus long est aussi enregistré dans la variable biggestWord</span>
+        biggestWord = words[i];
+        }
+    }
+    <span>// Après la boucle maxLength possède la taille du mot le plus long</span>
+    <span>// Et biggestWord la valeur de ce mot en caractères (string)</span>
+    <span>// En JavaScript, une fonction ne peut renvoyer deux valeurs, alors on les ajoute au tableau resultArray</span>
+    resultArray.push(biggestWord, maxLength);
+    <span>// Et la valeur de cette variable (sous la forme [nombre, string]) est renvoyée</span>
+    return resultArray;
+    }
+    <span>// Appel de la fonction</span>
+    findLongestWord("La nuit tous les chats sont gris");
+            </pre>
+            <!-- FIN DE L'AFFICHAGE DU CODE-->
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px; color:antiquewhite">Valeur d'entrée (string)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerD">
+                <button id="submitD">Test</button><br />
+            <span id= "outputD" class="output"></span>
+            <script>
+                const boutonD = document.getElementById("submitD");
+                function findLongestWord(str) {
+                    let maxLength = 0;
+                    let biggestWord = "";
+                    let resultwords = [];
+                    const resultArray = [];
+                    const words = str.split(' ');
+
+                    for(let i = 0; i < words.length; i++) {
+                        if(words[i].length > maxLength) {
+                        maxLength = words[i].length;
+                        biggestWord = words[i];
+                        }else if(words[i].length === maxLength) {
+                            biggestWord += ' ' + words[i];
+                        }
+                    }
+                    let resultWords = biggestWord.split(' ').join(' ainsi que ');
+                    resultArray.push(resultWords, maxLength);
+                    return resultArray;
+                    }
+                boutonD.addEventListener('click', function() {
+                    const inputD = document.querySelector("#envoyerD").value;
+                    const outputD = document.getElementById("outputD");
+                    let resultatD = findLongestWord(inputD);
+                    document.querySelector("#envoyerD").value ="";
+                    document.querySelector("#envoyerD").focus();
+                    outputD.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : ${inputD}</span> <br /> Résultat : Le mot le plus long est ${resultatD[0]} avec ${resultatD[1]} caractères.`;
+       
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                
+            </aside>
+        </article>
+        <!-- -----------------------E----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="E">Trouver les chiffres les plus grands de chaque Array (E)</h2>
+            <p class="in">Entrée : Array contenant plusieurs arrays de chiffres <strong>(Array)</strong></p>
+            <p class="out">Sortie : Un array contenant les chiffres les plus élevés <strong>(Array)</strong></p>
+            <pre>
+function findLargestInArrays(arr) {
+
+    <span>// Variable déclarée pour l'array final</span>
+    let finalArray = [];
+    <span>// Boucle pour passer à travers les différents arrays, et deuxième boucle</span>
+    <span>// imbriquée pour passer à travers les éléments composants chaque arrays.</span>
+    for(let i = 0; i < arr.length; i++) {
+        <span>// Déclaration de la variable qui prendra successivement la valeur la plus haute</span>
+        <span>// Déclaration de la variable qui prendra successivement la valeur la plus haute</span>
+        <span>// Si déclarée à "0", alors dysfonctionnement avec les chiffres négatifs.</span>
+        <span>// On lui donne la valeur du premier élément du tableau (qui sera comparé au second etc...)</span>
+        let maxNumber = arr[i][0];
+
+        for(let j = 0; j < arr[i].length; j++) {
+            <span>// Cette condition permet à maxNumber de changer pour la valeur</span>
+            <span>// d'un élément si cet élément est plus élevé.</span>
+            if(arr[i][j] > maxNumber) {
+                maxNumber = arr[i][j];
+            }
+        }
+        <span>// Après avoir bouclé à l'intérieur d'un array : </span>
+        <span>// maxNumber possède la valeur la plus élevée de cet array</span>
+        <span>// On la push() dans "finalArray" avant de continuer avec la boucle suivante.</span>
+        finalArray.push(maxNumber);
+    }
+    
+    return finalArray;
+    }
+    <span>// Appel de la fonction findLargestInArrays avec pour argument un array contenant 4 arrays [[], [], [], []]</span>
+    findLargestInArrays([[17, 23, 25, 12], [25, 7, 34, 48], [4, -10, 18, 21], [-72, -3, -17, -10]]);
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (Arrays)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerE">
+                <button id="submitE">Test</button><br />
+            <span id= "outputE" class="output"></span>
+            <script>
+                const boutonE = document.getElementById("submitE");
+                function findLargestInArrays(arr) {
+                    
+                    arr = arr.split(', ');
+                    arr = arr.map(x => x.split(' '));
+                    console.log(arr);
+                    let finalArray = [];
+                    const originalArray = arr;
+
+                    for(let i = 0; i < arr.length; i++) {
+                        let maxNumber = parseInt(arr[i][0]);
+
+                        for(let j = 0; j < arr[i].length; j++) {
+                            arr[i][j] = parseInt(arr[i][j]);
+                            if(arr[i][j] > maxNumber) {
+                                
+                                maxNumber = arr[i][j];
+                            }
+                        }
+                            finalArray.push(maxNumber);
+                        
+                    }
+                
+                    return finalArray;
+                }
+
+                boutonE.addEventListener('click', function() {
+                    const inputE = document.querySelector("#envoyerE").value;
+                    let arrayInputE = inputE
+                    arrayInputE = inputE.split(', ');
+                    arrayInputE = arrayInputE.map(x => x.split(' ')).map(x => '[' + x + ']');
+                    const outputE = document.getElementById("outputE");
+                    let resultatE = findLargestInArrays(inputE);
+                    document.querySelector("#envoyerE").value ="";
+                    document.querySelector("#envoyerE").focus();
+                    outputE.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : [${arrayInputE}]</span> <br /> Résultat  : [${resultatE}]`;
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">Entrez des nombres séparés par des espaces. Pour marquer le passage au tableau suivant, placez une virgule
+                    suivie d'un espace comme sur l'exemple suivant : [[1, 2, 3], [4, 5, 6], [7, 8, 9]] se traduira dans l'input par "1 2 3, 4 5 6, 7 8 9"
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------F----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="F">Vérifier si un mot ou phrase finit par une suite de caractères (F)</h2>
+            <p class="in">Entrée : Un mot/phrase et un groupe de caractères <strong>(strings)</strong></p>
+            <p class="out">Sortie : True ou False <strong>(Boolean)</strong></p>
+            <pre>
+function confirmEnding(str, target) {
+    <span>// Sur une seule ligne, on commence par faire un slice() du premier argument 'str'</span>
+    <span>// slice() prend un seul argument qui est l'index de début pour couper</span>
+    <span>// ici : on coupe str à partir de la longueur de str moins la longueur des caractères recherchés</span>
+    <span>// exemple : str = 'travail' (7) et target = 'ail' (3)</span>
+    <span>// on commence à couper à l'index 4 soit juste après 'trav'</span>
+    <span>// de manière à vérifier que le target est bien à la fin</span>
+    <span>// si c'est le cas, alors l'expression renvoie true, sinon False</span>
+
+    return str.slice(str.length -target.length) === target;
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px; color:antiquewhite">Valeur d'entrée (Deux Strings)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerF">
+                <button id="submitF">Test</button><br />
+            <span id= "outputF" class="output"></span>
+            <script>
+                const boutonF = document.getElementById("submitF");
+
+                function confirmEnding(inputStr) {
+                    let str = inputStr.split(' / ');
+                    return str[0].slice(str[0].length - str[1].length) === str[1];
+                    }
+                    
+                boutonF.addEventListener('click', function() {
+                    const inputF = document.querySelector("#envoyerF").value;
+                    const outputF = document.getElementById("outputF");
+                    let resultatF = confirmEnding(inputF);
+                    document.querySelector("#envoyerF").value ="";
+                    document.querySelector("#envoyerF").focus();
+                    outputF.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : "${inputF}"</span> <br /> Résultat  : ${resultatF}`;
+
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">Les deux strings doivent être séparées par un slash " / " suivi d'un espace.
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------G---------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="G">Répéter une phrase un certain nombre de fois (G)</h2>
+            <p class="in">Entrée : Une phrase et le nombre de fois qu'il faut la répéter<strong>(string et number)</strong></p>
+            <p class="out">Sortie : La phrase répétée <strong>(string)</strong></p>
+            <pre>
+function repeatStringNumTimes(str, num) {
+    <span>// on crée une variable pour accumuler la phrase</span>
+    let strRepeated ="";
+    for(let i = 0; i < num; i++) {
+        <span>// on boucle "num" nombre de fois pour ajouter la phrase à strRepeated</span>
+        strRepeated += str;
+    }
+    return strRepeated;
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px; color:antiquewhite">Valeur d'entrée (String et number)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerG">
+                <button id="submitG">Test</button><br />
+            <span id= "outputG" class="output"></span>
+            <script>
+                const boutonG = document.getElementById("submitG");
+
+                function repeatStringNumTimes(inputStr) {
+                    let str = inputStr.split(', ');
+                    let strRepeated ="";
+                    for(let i = 0; i < str[1]; i++) {
+                        strRepeated += str[0];
+                    }
+                    return strRepeated;
+                    }
+
+                boutonG.addEventListener('click', function() {
+                    const inputG = document.querySelector("#envoyerG").value;
+                    const outputG = document.getElementById("outputG");
+                    let resultatG = repeatStringNumTimes(inputG);
+                    document.querySelector("#envoyerG").value ="";
+                    document.querySelector("#envoyerG").focus();
+                    outputG.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : "${inputG}"</span> <br /> Résultat  : ${resultatG}`;
+
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">Séparer la phrase du nombre par une virgule puis un espace
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------H----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="H">Tronquer une phrase (H)</h2>
+            <p class="in">Entrée : Une phrase et le nombre de caractères à conserver<strong>(string et number)</strong></p>
+            <p class="out">Sortie : La phrase tronquée suivie de trois points de suspension <strong>(string)</strong></p>
+            <pre>
+function truncateString(str, num) {
+    <span>// Si la phrase à tronquer est plus longue que le nombre</span>
+    <span>// de caractère à conserver, alors on tronque avec slice()</span>
+    <span>// le premier argument étant l'index de départ, le second l'index de fin</span>
+    if(num < str.length) {
+        return str.slice(0, num) + "...";
+    <span>// Sinon, on ne tronque pas, puisque la phrase est déjà assez courte</span>
+    <span>// et on renvoie directement str</span>
+    } else {
+        return str;
+    }   
+    }
+                  
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (String et number)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerH">
+                <button id="submitH">Test</button><br />
+            <span id= "outputH" class="output"></span>
+            <script>
+                const boutonH = document.getElementById("submitH");
+
+                function truncateString(inputStr) {
+                    const inputArray = inputStr.split(', ');
+                    const num = inputArray[1];
+                    const str = inputArray[0];
+                    if(num < str.length) {
+                        return str.slice(0, num) + "...";
+                    } else {
+                        return str;
+                    }   
+                }
+
+
+                boutonH.addEventListener('click', function() {
+                    const inputH = document.querySelector("#envoyerH").value;
+                    const outputH = document.getElementById("outputH");
+                    let resultatH = truncateString(inputH);
+                    document.querySelector("#envoyerH").value ="";
+                    document.querySelector("#envoyerH").focus();
+                    outputH.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : "${inputH}"</span> <br /> Résultat  : "${resultatH}"`;
+
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">Séparer la phrase du nombre par une virgule puis un espace
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------I----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="I">Utiliser une fonction condition pour trouver le premier élément d'un tableau (I)</h2>
+            <p class="in">Entrée : Un tableau de nombres et une fonction condition<strong>(array de number et string)</strong></p>
+            <p class="out">Sortie : Le premier élément qui remplit la condition, ou "undefined" si aucun élément n'est trouvé<strong>(string ou undefined)</strong></p>
+            <pre>
+function findElement(arr, func) {
+    <span>// on déclare la variable qui prendra la valeur de chaque élément à tester</span>
+    let num = 0;
+    <span>// on boucle sur la longueur du tableau</span>
+    for (let i = 0; i < arr.length; i++) {
+        <span>// a chaque itération num prend la valeur de l'élément</span>
+        num = arr[i];
+        <span>// a chaque itération on test num avec la fonction</span>
+        if (func(num)) {
+        <span>// on retourne l'élément en cours si celui ci remplit la condition de la fonction</span>
+        return num;
+        }
+    }
+    <span>// si après être passé par tous les éléments du tableau</span>
+    <span>// aucun ne remplit la condition de la fonction</span>
+    <span>// alors on renvoie "undefined"</span>
+    return undefined;
+    }
+                  
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (Array de number et string)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerI">
+                <button id="submitI">Test</button><br />
+            <span id= "outputI" class="output"></span>
+            <script>
+                const boutonI = document.getElementById("submitI");
+
+                function findElement(inputStr) {
+                    const inputArray = inputStr.split(', ');
+                    const arr = [];
+                    arr.push(inputArray[0]);
+                    let newArr= arr[0].split(' ');
+                    const inputFunc = eval("(" + inputArray[1]+ ")");
+                    let num = 0;
+
+                    for (let i = 0; i < newArr.length; i++) {
+                        num = parseInt(newArr[i]);
+                        if (inputFunc(num)) {
+                        return num;
+                        }
+                    }
+                    return undefined;
+                }
+
+                boutonI.addEventListener('click', function() {
+                    const inputI = document.querySelector("#envoyerI").value;
+                    let arrayInputI = inputI.split(', ');
+                    arrayInputI = '[' + arrayInputI[0].split(' ') + '] ' + arrayInputI[1];
+                    const outputI = document.getElementById("outputI");
+                    let resultatI = findElement(inputI);
+                    document.querySelector("#envoyerI").value = "";
+                    document.querySelector("#envoyerH").focus();
+                    outputI.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : ${arrayInputI}</span> <br /> Résultat  : ${resultatI}`;
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                    Inscrivez les éléments du tableau (number) séparés par des espaces, puis une virgule suivie d'un espace et votre fonction.
+                    La fonction peut être de la forme :<br /> <strong>"function(num) {  return "condition" }"</strong> <br />OU <br /><strong>"num => "condition""</strong>
+                    <br />
+                    Exemple d'input : "-10 6 8 4 9 -6, function(num) { return num < 0 && num % 3 === 0 }"<br />
+                    Renverra : "-6" car l'élément recherché (num) est inférieur à 0 et multiple de 3.
+
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------J----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="J">Vérifier qu'une valeur soit booléenne (J)</h2>
+            <p class="in">Entrée : Une valeur ou expression de n'importe quel type<strong>(Tous types)</strong></p>
+            <p class="out">Sortie : True si la valeur est booléenne, false dans tous les autres cas<strong>(boolean)</strong></p>
+            <pre>
+function booleanCheck(bool) {
+    <span>//on vérifie le type de l'argument bool, si celui est booléen, on renvoie true sinon false</span>
+    return typeof(bool) === "boolean";
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px; color:antiquewhite">Valeur d'entrée </span> : </label>
+                <input type="text" name="envoyer" id="envoyerJ">
+                <button id="submitJ">Test</button><br />
+            <span id= "outputJ" class="output"></span>
+            <script>
+                const boutonJ = document.getElementById("submitJ");
+
+                function booleanCheck(bool) {
+                    const inputStr = eval(bool);
+                    return typeof(inputStr) === "boolean";
+    }
+
+                boutonJ.addEventListener('click', function() {
+                    const inputJ = document.querySelector("#envoyerJ").value;
+                    const outputJ = document.getElementById("outputJ");
+                    let resultatJ = booleanCheck(inputJ);
+                    document.querySelector("#envoyerJ").value = "";
+                    document.querySelector("#envoyerJ").focus();
+                    outputJ.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : ${inputJ}</span> <br /> Résultat  : ${resultatJ}`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------K----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="K">Convertir un nombre en chiffres romains (K)</h2>
+            <p class="in">Entrée : Un nombre<strong>(Number)</strong></p>
+            <p class="out">Sortie : Chiffre romain<strong>(String)</strong></p>
+            <pre>
+function romanize (num) {
+    <span>// on commence par vérifier que l'argument est de type number</span>
+    <span>// le "+" indique qu'on récupère la valeur numérique d'un nombre sous format string "234" => 234</span>
+    if (isNaN(+num)){
+    <span>// dans le cas contraire on retourne un avertissement</span>
+        return "Veuillez rentrer un nombre";
+    }
+    <span>// on déclare une première variable digit qui a pour valeur l'argument num passé en string,</span>
+    <span>// puis split en un tableau 234 => "234" => ["2", "3", "4"]</span>
+    let digit = String(+num).split("");
+    <span>// la variable key va servir à parcourir tous les caractères romains envisageables</span>
+    <span>// sur le chiffre des unités (de key[20 - 30])</span>
+    <span>// sur le chiffre des dizaines (de key[10-20])</span>
+    <span>// sur le chiffre des centaines (de key[0-10])</span>
+    const key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+                "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+                "","I","II","III","IV","V","VI","VII","VIII","IX"];
+    <span>// la variable roman est la string (vide) à laquelle</span>
+    <span>// vont s'ajouter les caractères romains séléctionés</span>
+    <span>// qui sera renvoyée en fin de fonction</span>
+    let roman = "";
+    <span>// i est l'indice d'incrémentation permettant de passer à travers le tableau key</span>
+    let i = 3;
+    <span>// on boucle de 3 à 0 (premier passage par la boucle i est déjà égal à 2, puis 1, puis 0)</span>
+    while (i--){
+        <span>// chaque itération permet de concaténer l'équivalent en chiffre romain au résultat précédent</span>
+        <span>// +digit.pop() a pour valeur le chiffre des unités, puis celui des dizaines, puis celui des centaines</span>
+        <span>// en ajoutant (i * 10) on avance dans le tableau key de 10 en 10</span>
+
+        <span>// exemple : 234 </span>
+        <span>// (premier passage par la boucle) i = 2</span>
+        <span>// => digit = ["2", "3", "4"]</span>
+        <span>// => digit.pop() = "4"</span>
+        <span>// => +digit.pop() = 4</span>
+        <span>// => +digit.pop() + (i*10) = 4 + (2*10) = 24</span>
+        <span>// => key[+digit.pop()+ (i*10)] = key[24]</span>
+        <span>// => key[24] = "IV"</span>
+        <span>// => roman = key[24] + roman = key[24] + "" = "IV"</span>
+
+        <span>// (second passage par la boucle) i = 1</span>
+        <span>// => digit = ["2", "3"] (unité retirée par digit.pop())</span>
+        <span>// => digit.pop() = "3"</span>
+        <span>// => +digit.pop() = 3</span>
+        <span>// => +digit.pop() + (i*10) = 3 + (1*10) = 13</span>
+        <span>// => key[+digit.pop()+ (i*10)] = key[13]</span>
+        <span>// => key[13] = "XXX"</span>
+        <span>// => roman = key[13] + roman = key[13] + "IV" = "XXXIV"</span>
+
+        <span>// (troisième passage par la boucle) i = 0</span>
+        <span>// => digit = ["2"] (dizaine retirée par digit.pop())</span>
+        <span>// => digit.pop() = "2"</span>
+        <span>// => +digit.pop() = 2</span>
+        <span>// => +digit.pop() + (i*10) = 2 + (0*10) = 2</span>
+        <span>// => key[+digit.pop()+ (i*10)] = key[2]</span>
+        <span>// => key[2] = "CC"</span>
+        <span>// => roman = key[2] + roman = key[2] + "XXXIV" = "CCXXXIV"</span>
+
+        roman = (key[+digit.pop() + (i * 10)] || "") + roman;
+    }
+    <span>// si le nombre en argument est inférieur à 1000</span>
+    <span>// alors digit = [], les trois chiffres étant supprimés du tableau</span>
+    <span>// sinon, les chiffres restants sont des milliers, dizaines de milliers, etc</span>
+    <span>// exemple : 576 234 => digit = ["5", "7", "6", "2", "3", "4"]</span>
+    <span>// après la boucle digit = ["5, "7", "6"]</span>
+    <span>// Array(n) permet de créer un tableau de longueur n</span>
+    <span>// Array(+digit.join("") + 1) va créer un tableau</span>
+    <span>// qui dans l'exemple précédent sera de longueur</span> 
+    <span>// digit.join("") = "576"</span>
+    <span>// +digit.join("") = 576</span>
+    <span>// +digit.join("") + 1 = 577</span>
+    <span>// Array(577) = [,,,,,,,,,,,,, etc] de 577 éléments vides tous séparés par des virgules</span>
+    <span>// avec Array(577).join("M") on forme une string à partir des éléments d'un tableau</span>
+    <span>// avec comme séparateur entre les différents élements "M"</span>
+    <span>// Les éléments étants vides, on obtient une string de la forme :</span>
+    <span>// "M x 576" (car il y a toujours un élément de plus qu'il n'y a de virgule dans un tableau)</span>
+    <span>// enfin, on renvoie cette valeur que l'on ajoute à la variable roman</span> 
+    <span>// ce qui donne autant de "M" qu'il y a de milliers + centaines, dizaines, unités en chiffres romains.</span>
+    return Array(+digit.join("") + 1).join("M") + roman;
+}
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (number) </span> : </label>
+                <input type="text" name="envoyer" id="envoyerK">
+                <button id="submitK">Test</button><br />
+            <span id= "outputK" class="output"></span>
+            <script>
+                const boutonK = document.getElementById("submitK");
+
+                function romanize (num) {
+                    if (isNaN(+num)){
+                        return "Veuillez rentrer un nombre";
+                    }
+                    let digit = String(+num).split("");
+                    const key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+                                "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+                                "","I","II","III","IV","V","VI","VII","VIII","IX"];
+                    let roman = "";
+                    let i = 3;
+                    while (i--){
+                        roman = (key[+digit.pop() + (i * 10)] || "") + roman;
+                    }
+                    return Array(+digit.join("") + 1).join("M") + roman;
+                }
+
+                boutonK.addEventListener('click', function() {
+                    const inputK = document.querySelector("#envoyerK").value;
+                    const outputK = document.getElementById("outputK");
+                    let resultatK = romanize(inputK);
+                    document.querySelector("#envoyerK").value = "";
+                    document.querySelector("#envoyerK").focus();
+                    outputK.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : ${inputK}</span> <br /> Résultat  : ${resultatK}`;
+                   
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------L----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="L">(Dé)coder un texte avec le Rot13 (L)</h2>
+            <p class="in">Entrée : un texte sans accent, chiffres ou ponctuation<strong>(string)</strong></p>
+            <p class="out">Sortie : le texte codé ou décodé (Rotation de 13 places)<strong>(string)</strong></p>
+            <pre>
+function toRot13(str) {
+    <span>// on fait passer l'argument str en majuscule</span>
+    <span>// puis on split() chaque caractère dans un tableau</span>
+    <span>// on map pour passer sur chaque élément</span>
+    
+    const newStr = str.toUpperCase().split('').map((char) => {
+        <span>// pour chaque élément, code à la valeur UTF-16 du caractère (A-Z entre 65 et 90)</span>
+        const code =  char.charCodeAt(char);
+        <span>// ensuite 3 possibilités : </span>
+        <span>// soit le caractère est un caractère spécial (si code < 65 ou code > 90)</span>
+        <span>// alors on renvoie le caractère sans le coder</span>
+        if(code > 90 || code < 65) {
+        return String.fromCharCode(code);
+        <span>// soit le caractère est entre 78 et 90 (N - Z)</span>
+        <span>// alors on retire 13 à la valeur UTF-16 et on renvoie le caractère</span>
+        <span>// exemple N = 78 ; 78 - 13 = 65 = A</span>
+        } else if(code >= 78){
+        return String.fromCharCode(code-13);
+        <span>// dans tous les autres cas (65 <= code < 78)</span>
+        <span>// on ajoute 13 à la valeur UTF-16 et on renvoie le caractère</span>
+        <span>// exemple B = 66; 66 + 13 = 79 = M</span>
+        } else {
+        return String.fromCharCode(code+13);
+        }
+    }).join('');
+    
+    return newStr;
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (string) </span> : </label>
+                <input type="text" name="envoyer" id="envoyerL">
+                <button id="submitL">Test</button><br />
+            <span id= "outputL" class="output"></span>
+            <script>
+                const boutonL = document.getElementById("submitL");
+
+                function toRot13(str) {
+                    const newStr = str.toUpperCase().split('').map((char) => {
+                    const code =  char.charCodeAt(char);
+                    if(code > 90 || code < 65) {
+                        return String.fromCharCode(code);
+                    } else if(code >= 78){
+                        return String.fromCharCode(code-13);
+                    } else {
+                        return String.fromCharCode(code+13);
+                        }
+                    }).join('');
+                    
+                    return newStr;
+                }
+
+                boutonL.addEventListener('click', function() {
+                    const inputL = document.querySelector("#envoyerL").value;
+                    const outputL = document.getElementById("outputL");
+                    let resultatL = toRot13(inputL);
+                    document.querySelector("#envoyerL").value = "";
+                    document.querySelector("#envoyerL").focus();
+                    outputL.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : ${inputL}</span> <br /> Résultat  : ${resultatL}`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------M----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="M">Mettre en majuscule chaque première lettre d'une phrase (M)</h2>
+            <p class="in">Entrée : une chaîne de caractères <strong>(string)</strong></p>
+            <p class="out">Sortie : La même chaîne avec des majuscules au début de chaque mot<strong>(string)</strong></p>
+            <pre>
+function titleCase(str) {
+    <span>// on utilise plusieurs méthodes à la suite avant de renvoyer le résultat :</span>
+    return str
+        <span>// on passe str en minuscule</span>
+        .toLowerCase()
+        <span>// les ensembles de caractères séparés d'un espace sont placés dans un tableau</span>
+        .split(' ')
+        <span>// on passe à travers tous les éléments du tableau</span>
+        <span>// pour chaque élément, on remplace</span>
+        <span>// le premier caractère par le même caractère en majuscule</span>
+        .map((word) =>  word.replace(word.charAt(0), word.charAt(0).toUpperCase()))
+        <span>// on joint tous les éléments du tableau séparés par un espace</span>
+        .join(' ');
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px; color:antiquewhite">Valeur d'entrée (string) </span> : </label>
+                <input type="text" name="envoyer" id="envoyerM">
+                <button id="submitM">Test</button><br />
+            <span id= "outputM" class="output"></span>
+            <script>
+                const boutonM = document.getElementById("submitM");
+
+                function titleCase(str) {
+                    return str
+                        .toLowerCase()
+                        .split(' ')
+                        .map((word) =>  word.replace(word.charAt(0), word.charAt(0).toUpperCase()))
+                        .join(' ');
+                }
+                boutonM.addEventListener('click', function() {
+                    const inputM = document.querySelector("#envoyerM").value;
+                    const outputM = document.getElementById("outputM");
+                    let resultatM = titleCase(inputM);
+                    document.querySelector("#envoyerM").value = "";
+                    document.querySelector("#envoyerM").focus();
+                    outputM.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : ${inputM}</span> <br /> Résultat  : ${resultatM}`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------N----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="N">Insérer un tableau dans un tableau à un index donné (N)</h2>
+            <p class="in">Entrée : éléments de tableaux et index<strong>(tous types et number)</strong></p>
+            <p class="out">Sortie : tableau modifié avec les éléments entrés<strong>(Array)</strong></p>
+            <pre>
+function sliceNSplice(arr1, arr2, n) {
+    <span>// on copie à l'aide d'un slice() tout le contenu de l'arr2 dans un nouvel array</span>
+    let newArr = arr2.slice()
+    <span>// on modifie newArr à partir de l'index "n"</span>
+    <span>// on supprime 0 éléments</span>
+    <span>// et on utilise l'opérateur de décomposition "..." pour ajouter tous les éléments d'arr1</span>
+    newArr.splice(n, 0, ...arr1);
+    return newArr;
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (tous types et number) </span> : </label>
+                <input type="text" name="envoyer" id="envoyerN">
+                <button id="submitN">Test</button><br />
+            <span id= "outputN" class="output"></span>
+            <script>
+                const boutonN = document.getElementById("submitN");
+
+                function sliceNSplice(inputStr) {
+                    let input1 = inputStr.split(', ')[0];
+                    let arr1 = input1.split(' ');
+                    let input2 = inputStr.split(', ')[1];
+                    let arr2 = input2.split(' ');
+                    let n = inputStr.split(', ')[2];
+                    let newArr = arr2.slice();
+                    newArr.splice(n, 0, ...arr1);
+                    return newArr;
+                }
+                boutonN.addEventListener('click', function() {
+                    const inputN = document.querySelector("#envoyerN").value;
+                    let arrayInputN = inputN.split(', ');
+                    arrayInputN = '[' + arrayInputN[0].split(' ') + '] [' + arrayInputN[1].split(' ') + '] ' + arrayInputN[2];
+
+                    const outputN = document.getElementById("outputN");
+                    let resultatN = sliceNSplice(inputN);
+                    document.querySelector("#envoyerN").value = "";
+                    document.querySelector("#envoyerN").focus();
+                    outputN.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : ${arrayInputN}</span> <br /> Résultat  : [${resultatN}]`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                    (Nb : l'input envoie des strings et non des nombres) 
+                    Séparer les éléments des tableaux par des espaces. Les tableaux et l'index doivent être séparés par une virgule et un espace. <br />
+                    Exemple : <br />
+                    ["tigre", "chien", "perroquet"],[1, 2, 67, 34], 2 <br />
+                    s'écrit dans l'input => <br />
+                    "tigre chien perroquet, 1 2 67 34, 2" <br />
+                    et donne comme résultat : [1, 2, tigre, chien, perroquet, 67, 34]
+
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------O----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="O">Retirer toutes les valeurs "falsy" d'un tableau (O)</h2>
+            <p class="in">Entrée : tableau<strong>(Array de tous types)</strong></p>
+            <p class="out">Sortie : tableau ne contenant que des valeurs "truthy"<strong>(Array)</strong></p>
+            <pre>
+function onlyTruthy(arr) {
+    <span>// on déclare un tableau pour les valeurs à renvoyer</span>
+    const truthyArr = [];
+    <span>// on boucle sur le tableau en argument</span>
+    for(let i = 0; i < arr.length; i++) {
+        <span>// la condition permet d'écarter les valeurs "falsy" qui sont :</span>
+        <span>// false, null, 0, "", undefined et NaN</span>
+        if(arr[i]) {
+        <span>// les résultats "truthy" sont insérés dans le tableau truthyArr</span>
+        truthyArr.push(arr[i]);
+        }
+    }
+    return truthyArr;
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (tableau, tous types) </span> : </label>
+                <input type="text" name="envoyer" id="envoyerO">
+                <button id="submitO">Test</button><br />
+            <span id= "outputO" class="output"></span>
+            <script>
+                const boutonO = document.getElementById("submitO");
+
+                function onlyTruthy(arr) {
+                    let inputArr = arr
+                    .split(' ');
+                    for(let i = 0; i < inputArr.length; i++) {
+                        switch(inputArr[i]) {
+                            case "undefined" : inputArr[i] = undefined;
+                            break;
+                            case "false" : inputArr[i] = false;
+                            break;
+                            case "NaN" : inputArr[i] = NaN;
+                            break;
+                            case "null" : inputArr[i] = null;
+                            break;
+                            case "0" : inputArr[i] = 0;
+                            break;
+                        }
+                    }
+            
+                    console.log(inputArr);
+                    const truthyArr = [];
+                    for(let i = 0; i < inputArr.length; i++) {
+                        if(inputArr[i]) {
+                        truthyArr.push(inputArr[i]);
+                        }
+                    }
+                    return truthyArr;
+                }
+
+                boutonO.addEventListener('click', function() {
+                    const inputO = document.querySelector("#envoyerO").value;
+                    const inputArrayO = inputO.split(' ').join(',');
+                    const outputO = document.getElementById("outputO");
+                    let resultatO = onlyTruthy(inputO);
+                    document.querySelector("#envoyerO").value = "";
+                    document.querySelector("#envoyerO").focus();
+                    outputO.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : [${inputArrayO}]</span> <br /> Résultat  : [${resultatO}]`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                    Séparer les valeurs du tableau par un espace
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------P----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="P">Trouver l'index d'un nombre dans un tableau croissant (P)</h2>
+            <p class="in">Entrée : tableau de nombres, et le nombre à classer<strong>(Array, number)</strong></p>
+            <p class="out">Sortie : Index du nombre à la bonne place<strong>(number)</strong></p>
+            <pre>
+function getNumIndex(arr, num) {
+    return arr
+    <span>// on renvoie directement l'array en commençant</span>
+    <span>// par fusionnant arr et num => [valeur, valeur, valeur, (num)]</span>
+    .concat(num)
+    <span>// on classe les valeurs du tableau par ordre croissant</span>
+    .sort((a, b) => a - b)
+    <span>// on utilise la méthode indexOf(valeur) pour trouver</span>
+    <span>// l'index à laquelle elle se trouve</span>
+    .indexOf(num);
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (Array de number, number) </span> : </label>
+                <input type="text" name="envoyer" id="envoyerP">
+                <button id="submitP">Test</button><br />
+            <span id= "outputP" class="output"></span>
+            <script>
+                const boutonP = document.getElementById("submitP");
+
+                function getNumIndex(arr) {
+                    let inputArr = arr.split(', ');
+                    let num = parseInt(inputArr.slice(1).join(''));
+                    console.log(num);
+                    let resultArr = inputArr[0].split(' ');
+                    console.log(resultArr);
+                    return resultArr
+                    .concat(num)
+                    .sort((a, b) => a - b)
+                    .indexOf(num);
+                }
+
+                boutonP.addEventListener('click', function() {
+                    const inputP = document.querySelector("#envoyerP").value;
+                    let resultInputP = inputP.split(', ');
+                    const outputP = document.getElementById("outputP");
+                    let resultatP = getNumIndex(inputP);
+                    document.querySelector("#envoyerP").value = "";
+                    document.querySelector("#envoyerP").focus();
+                    outputP.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : [${resultInputP[0].split(' ')}] "${resultInputP[1]}"</span> <br /> Résultat  : ${resultInputP[1]} se trouve à l'index : ${resultatP}`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                    Séparer les valeurs du tableau par un espace, et le nombre recherché par une virgule et un espace
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------Q----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="Q">Vérifier si une chaîne de caractère contient certaines lettres (Q)</h2>
+            <p class="in">Entrée : Deux chaînes de caractère (On vérifie à partir de la 2nd sur la 1ère)<strong>(String, string)</strong></p>
+            <p class="out">Sortie : Résultat de la recherche : True ou False<strong>(boolean)</strong></p>
+            <pre>
+function mutation(arr) {
+    <span>// pour faciliter la recherche, on passe les deux</span>
+    <span>// éléments du tableau en minuscule dans de nouvelles variables</span>
+    const target = arr[1].toLowerCase();
+    const searchArr = arr[0].toLowerCase();
+    <span>// on boucle sur la taille de la seconde chaîne de caractère</span>
+    for(let i = 0; i < target.length; i++) {
+        <span>// pour chaque caractère on vérifie qu'il existe sur la première</span>
+        <span>// avec indexOf() si la lettre n'existe pas, -1 est renvoyé</span>
+        if(searchArr.indexOf(target[i]) === -1) {
+        <span>// auquel cas on renvoie "false"</span>
+        return false;
+        }
+    }
+    <span>// si aucun caractère absent (-1) n'a été trouvé on renvoie "true"</span>
+    return true;
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (Deux strings) </span> : </label>
+                <input type="text" name="envoyer" id="envoyerQ">
+                <button id="submitQ">Test</button><br />
+            <span id= "outputQ" class="output"></span>
+            <script>
+                const boutonQ = document.getElementById("submitQ");
+
+                function mutation(arr) {
+                    let inputArr = arr.split(', ');
+                    const target = inputArr[1].toLowerCase();
+                    const searchArr = inputArr[0].toLowerCase();
+                    for(let i = 0; i < target.length; i++) {
+
+                        if(searchArr.indexOf(target[i]) === -1) {
+                        return false;
+                        }
+                    }
+                    return true;
+                }
+                boutonQ.addEventListener('click', function() {
+                    const inputQ = document.querySelector("#envoyerQ").value;
+                    let resultInputQ = inputQ.split(', ');
+                    const outputQ = document.getElementById("outputQ");
+                    let resultatQ = mutation(inputQ);
+                    document.querySelector("#envoyerQ").value = "";
+                    document.querySelector("#envoyerQ").focus();
+                    outputQ.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : "${resultInputQ[0]}" "${resultInputQ[1]}"</span> <br /> Résultat  : ${resultatQ}`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                    Séparer les deux chaînes de caractères par une virgule et un espace<br />
+                    Exemple: <br />
+                    "Laurent Jacques Sofia Gwanaelle, Joelle" => true
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------R----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="R">Diviser les éléments d'un tableau en tableaux de taille "n"</h2>
+            <p class="in">Entrée : Tableau d'éléments, et taille des groupes<strong>(array, number)</strong></p>
+            <p class="out">Sortie : Tableau de deux dimensions<strong>(array)</strong></p>
+            <pre>
+function chunkArrayInGroups(arr, size) {
+    <span>// on commence par créer un tableau pour la sortie</span>
+    const newArr = [];
+    <span>// on boucle sur la taille du tableau arr en argument</span>
+    <span>// mais on ne veut pas incrémenter i de 1 à chaque passage</span>
+    <span>// en incrémentant i de "size", on est sur d'avancer jusqu'au prochain groupe</span>
+    for(let i = 0; i < arr.length; i += size){
+        <span>// on ajoute à newArr la partie d'arr qui va de i jusqu'à size (1er passage)</span>
+        <span>// puis de size jusqu'à 2xsize, 3xsize, 4xsize, etc...</span>
+        newArr.push(arr.slice(i, i +size))
+    }
+    return newArr;
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (un Array, tous types, et un nombre) </span> : </label>
+                <input type="text" name="envoyer" id="envoyerR">
+                <button id="submitR">Test</button><br />
+            <span id= "outputR" class="output"></span>
+            <script>
+                const boutonR = document.getElementById("submitR");
+
+                function chunkArrayInGroups(arr) {
+                    let inputArr = arr.split(', ');
+                    let newArr = inputArr[0].split(' ');
+                    console.log(newArr);
+                    const size = parseInt(inputArr[1]);
+                    console.log(size);
+                    const chunkedArray = [];
+                    for(let i = 0; i < newArr.length; i += size){
+                        console.log(i);
+                        console.log(i+size);
+                        let tempArr = "["+ newArr.slice(i, i +size) + "]";
+                        console.log(tempArr);
+                        chunkedArray.push(tempArr);
+                        tempArr = '';
+                    }
+                    return chunkedArray;
+                }
+
+                boutonR.addEventListener('click', function() {
+                    const inputR = document.querySelector("#envoyerR").value;
+                    let resultInputR = inputR.split(', ');
+                    const outputR = document.getElementById("outputR");
+                    let resultatR = chunkArrayInGroups(inputR);
+                    document.querySelector("#envoyerR").value = "";
+                    document.querySelector("#envoyerR").focus();
+                    outputR.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : "${resultInputR[0]}" "${resultInputR[1]}"</span> <br /> Résultat  : [${resultatR}]`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                    Séparer les éléments du tableau par des espaces, puis le tableau du nombre à grouper par une virgule et un espace.
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------S----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="S">Calculer la somme de tous les nombres entre deux(inclus)</h2>
+            <p class="in">Entrée : Tableau de deux nombres<strong>(number)</strong></p>
+            <p class="out">Sortie : Somme <strong>(number)</strong></p>
+            <pre>
+function sumAll(arr) {
+    <span>// on déclare une variable pour chaque nombre du tableau</span>
+    const firstNum = arr[0];
+    const lastNum = arr[1];
+
+    <span>// On calcule la quantité de nombres entre ces deux chiffres</span>
+    <span>// le +1 permet d'inclure les deux nombres [a,b] sinon [a,b[ sans.</span>
+    <span>// Math.abs() donne un résultat en valeur absolue (pas de négatifs)</span>
+    const countNum = Math.abs(firstNum - lastNum) + 1;
+    
+    <span>// on utilise la formule de la somme d'une suite arithmétique</span>
+    <span>// somme = (n*(a1 + an)) / 2</span>
+    <span>// n étant le nombre de termes de la suite</span>
+    <span>// a1 le premier terme, an le dernier</span>
+    const sum = ((firstNum + lastNum) * countNum) / 2;
+
+    return sum;
+    };
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (array de deux nombres)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerS">
+                <button id="submitS">Test</button><br />
+            <span id= "outputS" class="output"></span>
+            <script>
+                const boutonS = document.getElementById("submitS");
+
+                function sumAll(arr) {
+                    const inputArr = arr.split(', ');
+                    const firstNum = parseInt(inputArr[0]);
+                    const lastNum = parseInt(inputArr[1]);
+
+                    const countNum = Math.abs(firstNum - lastNum) + 1;
+
+                    const sum = ((firstNum + lastNum) * countNum) / 2;
+                    return sum;
+                };
+
+                boutonS.addEventListener('click', function() {
+                    const inputS = document.querySelector("#envoyerS").value;
+                    let resultInputS = inputS.split(', ');
+                    const outputS = document.getElementById("outputS");
+                    let resultatS = sumAll(inputS);
+                    document.querySelector("#envoyerS").value = "";
+                    document.querySelector("#envoyerS").focus();
+                    outputS.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : [${resultInputS[0]}, ${resultInputS[1]}]</span> <br /> Résultat  : Somme = ${resultatS}`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                    Séparer les deux nombres par une virgule et un espace.<br />
+                    Exemple : <br />
+                    input : "45, 14" => [45, 14]
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------T----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="T">Trouver les éléments présents dans un seul tableau</h2>
+            <p class="in">Entrée : Deux tableaux d'éléments<strong>(deux arrays de tous types)</strong></p>
+            <p class="out">Sortie : Un tableau avec les éléments uniques à chaque tableau <strong>(Array)</strong></p>
+            <pre>
+function diffArray(arr1, arr2) {
+    <span>// on renvoie directement le résultat des opérations réalisées</span>
+    <span>// on commence par fusionner les deux tableaux avec concat()</span>
+    <span>// puis on filtre pour ne renvoyer que les éléments qui</span>
+    <span>// 1) ne sont pas présents dans le tableau d'origine arr1</span>
+    <span>// OU</span>
+    <span>// 2) ne sont pas présents dans le tableau d'origine arr2</span>
+    return arr1
+        .concat(arr2)
+        .filter(item => !arr1.includes(item) || !arr2.includes(item));
+}
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (deux arrays de tous types)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerT">
+                <button id="submitT">Test</button><br />
+            <span id= "outputT" class="output"></span>
+            <script>
+                const boutonT = document.getElementById("submitT");
+
+                function diffArray(arr) {
+                    const inputArr = arr.split(", ");
+                    const inputArr1 = inputArr[0].split(" ");
+                    const inputArr2 = inputArr[1].split(" ");
+                    return inputArr1
+                    .concat(inputArr2)
+                    .filter(item => !inputArr1.includes(item) || !inputArr2.includes(item));
+                }
+
+                boutonT.addEventListener('click', function() {
+                    const inputT = document.querySelector("#envoyerT").value;
+                    const resultInputT = inputT.split(', ');
+                    const resultInputT1 = resultInputT[0].split(" ");
+                    const resultInputT2 = resultInputT[1].split(" ");
+                    const outputT = document.getElementById("outputT");
+                    let resultatT = diffArray(inputT);
+                    document.querySelector("#envoyerT").value = "";
+                    document.querySelector("#envoyerT").focus();
+                    outputT.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : [${resultInputT1}], [${resultInputT2}]</span> <br /> Résultat  : [${resultatT}]`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                    Séparer les éléments des tableaux par des espaces, et les tableaux par une virgule et un espace<br />
+                    Exemple : <br />
+                    input : "Pluton Mars Vénus Io, Jupiter Io Mars Mercure" => [Pluton, Mars, Vénus, Io],[Jupiter, Io, Mars, Mercure]<br />
+                    output : [Pluton, Vénus, Jupiter, Mercure]
+                </span>
+            </aside>
+        </article>
+        <!-- -----------------------U----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="S">Rechercher et détruire des valeurs dans un tableau</h2>
+            <p class="in">Entrée : Un tableau et des valeurs<strong>(Un array, et tous types de valeurs)</strong></p>
+            <p class="out">Sortie : Un tableau filtré  <strong>(array)</strong></p>
+            <pre>
+<span>// on récupère les valeurs à rechercher grâce au spread operator ...valsToRemove</span>
+<span>// arr contient uniquement le tableau dans lequel rechercher</span>
+function destroyer(arr, ...valsToRemove) {
+    <span>// on renvoie le tableau arr filtré</span>
+    <span>// sans les valeurs contenues dans valsToRemove</span>
+    return arr.filter(x => !valsToRemove.includes(x));
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (un array et des valeurs)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerU">
+                <button id="submitU">Test</button><br />
+            <span id= "outputU" class="output"></span>
+            <script>
+                const boutonU = document.getElementById("submitU");
+
+                function destroyer(arr) {
+                    // arr = "1 2 3 1 2 3, 2, 3" 
+                    const inputArr = arr.split(", ");
+                    // inputArr = ["1 2 3 1 2 3", "2", "3"]
+                    const inputArr1 = inputArr[0].split(" ");
+                    // inputArr1 = ["1", "2", "3", "1", "2", "3"]
+                    const valsToRemove = inputArr.slice(1);
+
+                    return inputArr1.filter(x => !valsToRemove.includes(x));
+                }
+
+                boutonU.addEventListener('click', function() {
+                    const inputU = document.querySelector("#envoyerU").value;
+                    let resultInputU = inputU.split(', ');
+                    const outputU = document.getElementById("outputU");
+                    let resultatU = destroyer(inputU);
+                    document.querySelector("#envoyerU").value = "";
+                    document.querySelector("#envoyerU").focus();
+                    outputU.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : [${resultInputU[0].replaceAll(" ", ",")}],${[...resultInputU.slice(1)]}</span> <br /> Résultat  : [${resultatU}]`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                    Séparer les éléments du tableau par des espaces.<br />
+                    Séparer le tableau des valeurs à rechercher, ainsi que les valeurs entres elles, par une virgule et un espace<br />
+                    Exemple : <br />
+                    Input : "1 2 3 1 2 3, 2, 3" => [1,2,3,1,2,3], 2, 3 où 2 et 3 sont les valeurs à rechercher dans le tableau.<br />
+                    
+                </span>
+            </aside>
+        </article>
+        <footer id="footer">
+            <a href="#main" target="_self">Remonter en haut de page</a>
+
+        </footer>
+    </div>
+    
+</body>
+</html>
