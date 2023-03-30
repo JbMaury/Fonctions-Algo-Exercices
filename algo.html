@@ -1483,6 +1483,64 @@ function destroyer(arr, ...valsToRemove) {
                 </span>
             </aside>
         </article>
+        <!-- -----------------------V----------------------------- -->
+        <article class="function">
+            <section>
+            <h2 id="S">Rechercher et détruire des valeurs dans un tableau</h2>
+            <p class="in">Entrée : Un tableau et des valeurs<strong>(Un array, et tous types de valeurs)</strong></p>
+            <p class="out">Sortie : Un tableau filtré  <strong>(array)</strong></p>
+            <pre>
+<span>// on récupère les valeurs à rechercher grâce au spread operator ...valsToRemove</span>
+<span>// arr contient uniquement le tableau dans lequel rechercher</span>
+function destroyer(arr, ...valsToRemove) {
+    <span>// on renvoie le tableau arr filtré</span>
+    <span>// sans les valeurs contenues dans valsToRemove</span>
+    return arr.filter(x => !valsToRemove.includes(x));
+    }
+            </pre>
+            <br />
+                <label for="envoyer"><span style="font-size: 100%; margin-left: 50px;  color:antiquewhite">Valeur d'entrée (un array et des valeurs)</span> : </label>
+                <input type="text" name="envoyer" id="envoyerU">
+                <button id="submitU">Test</button><br />
+            <span id= "outputU" class="output"></span>
+            <script>
+                const boutonU = document.getElementById("submitU");
+
+                function destroyer(arr) {
+                    // arr = "1 2 3 1 2 3, 2, 3" 
+                    const inputArr = arr.split(", ");
+                    // inputArr = ["1 2 3 1 2 3", "2", "3"]
+                    const inputArr1 = inputArr[0].split(" ");
+                    // inputArr1 = ["1", "2", "3", "1", "2", "3"]
+                    const valsToRemove = inputArr.slice(1);
+
+                    return inputArr1.filter(x => !valsToRemove.includes(x));
+                }
+
+                boutonU.addEventListener('click', function() {
+                    const inputU = document.querySelector("#envoyerU").value;
+                    let resultInputU = inputU.split(', ');
+                    const outputU = document.getElementById("outputU");
+                    let resultatU = destroyer(inputU);
+                    document.querySelector("#envoyerU").value = "";
+                    document.querySelector("#envoyerU").focus();
+                    outputU.innerHTML = `<span style="font-size: 100%; text-shadow: 1px 1px rgb(220, 20, 60, 1); color:antiquewhite"> Input : [${resultInputU[0].replaceAll(" ", ",")}],${[...resultInputU.slice(1)]}</span> <br /> Résultat  : [${resultatU}]`;
+             
+                    
+                });
+            </script>
+            </section>
+            <aside>
+                <h3>Notes</h3>
+                <span class ="bottomRef">
+                    Séparer les éléments du tableau par des espaces.<br />
+                    Séparer le tableau des valeurs à rechercher, ainsi que les valeurs entres elles, par une virgule et un espace<br />
+                    Exemple : <br />
+                    Input : "1 2 3 1 2 3, 2, 3" => [1,2,3,1,2,3], 2, 3 où 2 et 3 sont les valeurs à rechercher dans le tableau.<br />
+                    
+                </span>
+            </aside>
+        </article>
         <footer id="footer">
             <a href="#main" target="_self">Remonter en haut de page</a>
 
