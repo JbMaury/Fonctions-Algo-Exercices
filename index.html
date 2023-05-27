@@ -587,7 +587,7 @@ function truncateString(str, num) {
         <article class="function">
             <section>
             <h2 id="I">Utiliser une fonction condition pour trouver le premier élément d'un tableau (I)</h2>
-            <p class="in">Entrée : Un tableau de nombres et une fonction condition<strong>(array de number et string)</strong></p>
+            <p class="in">Entrée : Un tableau de nombres<strong></strong></p>
             <p class="out">Sortie : Le premier élément qui remplit la condition, ou "undefined" si aucun élément n'est trouvé<strong>(string ou undefined)</strong></p>
             <pre>
 function findElement(arr, func) {
@@ -619,26 +619,23 @@ function findElement(arr, func) {
                 const boutonI = document.getElementById("submitI");
 
                 function findElement(inputStr) {
-                    const inputArray = inputStr.split(', ');
-                    const arr = [];
-                    arr.push(inputArray[0]);
-                    let newArr= arr[0].split(' ');
-                    const inputFunc = eval("(" + inputArray[1]+ ")");
+                    const inputArray = inputStr.split(' ');
                     let num = 0;
-
-                    for (let i = 0; i < newArr.length; i++) {
-                        num = parseInt(newArr[i]);
-                        if (inputFunc(num)) {
+                    for (let i = 0; i < inputArray.length; i++) {
+                        num = parseInt(inputArray[i]);
+                        if (numCondition(num)) {
                         return num;
                         }
                     }
                     return undefined;
                 }
+                function numCondition(num) {
+                    return num > 0 && num % 3 === 0
+                }
 
                 boutonI.addEventListener('click', function() {
                     const inputI = document.querySelector("#envoyerI").value;
-                    let arrayInputI = inputI.split(', ');
-                    arrayInputI = '[' + arrayInputI[0].split(' ') + '] ' + arrayInputI[1];
+                    let arrayInputI = '[' + inputI.split(' ') + ']';
                     const outputI = document.getElementById("outputI");
                     let resultatI = findElement(inputI);
                     document.querySelector("#envoyerI").value = "";
@@ -650,11 +647,12 @@ function findElement(arr, func) {
             <aside>
                 <h3>Notes</h3>
                 <span class ="bottomRef">
-                    Inscrivez les éléments du tableau (number) séparés par des espaces, puis une virgule suivie d'un espace et votre fonction.
-                    La fonction peut être de la forme :<br /> <strong>"function(num) {  return "condition" }"</strong> <br />OU <br /><strong>"num => "condition""</strong>
+                    Inscrivez les éléments du tableau (number) séparés par des espaces. La fonction conditionnelle est fixée.
+                    La fonction est de la forme :<br /> <strong>"function(num) {  return "condition" }"</strong> <br />OU <br /><strong>"num => "condition""</strong>
                     <br />
-                    Exemple d'input : "-10 6 8 4 9 -6, function(num) { return num < 0 && num % 3 === 0 }"<br />
-                    Renverra : "-6" car l'élément recherché (num) est inférieur à 0 et multiple de 3.
+                    Exemple d'input : "-10 6 8 4 9 -6"<br/>
+                    La fonction est : "function(num) { return num > 0 && num % 3 === 0 }"<br />
+                    Renverra : "6" car l'élément recherché (num) est supérieur à 0 et multiple de 3.
 
                 </span>
             </aside>
